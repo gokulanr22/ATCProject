@@ -11,3 +11,4 @@
 # Ignore any sensitive or configuration files
 secrets.tfvars
 
+.terraform/
