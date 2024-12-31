@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-pv-server
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: gp2
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-041bb2f98a79d068d
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: failure-domain.beta.kubernetes.io/zone
+              operator: In
+              values:
+                - us-east-1b
